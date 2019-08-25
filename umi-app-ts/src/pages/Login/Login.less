@@ -1,0 +1,25 @@
+@import '../../global.less';
+
+
+.LoginWrap {
+  .wh(100%, 100vh);
+  .bgColor(@baseBackgroundColor);
+  .flex;
+  justify-content: center;
+
+  .LoginConWrap {
+    padding-top: 15%;
+    .w(368px);
+
+    .LogoWrap {
+      .flex;
+      justify-content: center;
+      padding-bottom:20px;
+      &>img {
+        display: block;
+        .wh(231px, 60px);
+      }
+    }
+
+  }
+}

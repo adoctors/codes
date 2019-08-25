@@ -1,0 +1,67 @@
+@import '../global.less';
+@nav-header-height: 64px;
+
+.MainLayoutWrap {
+  .wh(100%, 100vh);
+  min-width: 1200px;
+  .flex;
+  flex-direction: column;
+
+  .MainLayoutHeader {
+    .wh(100%, @nav-header-height);
+    .bgColor(@baseBackgroundColor);
+  }
+
+  .MainLayoutConWrap {
+    .flexAuto;
+    .w(100%);
+
+    .MainLayoutSidebar {
+      .w(200px);
+      .flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-shrink: 0;
+      overflow: hidden;
+      .bgColor(@baseBackgroundColor);
+
+      .MainLayoutSidebarFooter {
+        .flex;
+        .h(48px);
+
+        .munuBtn {
+          .flexCenter;
+          .wh(50px, 48px);
+          margin-left: auto;
+          .fontSizeColor(20px, #fff);
+          .cp;
+          .bgColor(#1890ff);
+        }
+      }
+    }
+
+    .MainLayoutSidebarMin {
+      .w(50px);
+      transition: width .2s;
+    }
+
+    .MainLayoutSidebarMax {
+      .w(200px);
+      transition: width .2s;
+    }
+
+    .MainLayoutCon {
+      .flex;
+      .w(100%);
+      box-sizing: border-box;
+      padding: 20px;
+      .bgColor(#f0f2f5);
+
+      .MainLayoutConBg {
+        .flexAuto;
+        .w(100%);
+        .bgColor(#fff);
+      }
+    }
+  }
+}
