@@ -2,7 +2,6 @@ import { Reducer } from 'redux';
 import { Subscription, Effect } from 'dva';
 import { ConnectState } from './connect.d';
 
-
 export const namespace = 'global';
 
 export interface GlobalModelState {
@@ -32,9 +31,7 @@ const GlobalModel: GlobalModelType = {
     collapsed: false,
   },
 
-  effects: {
-
-  },
+  effects: {},
 
   reducers: {
     changeLayoutCollapsed(state = { collapsed: true }, { payload }): GlobalModelState {

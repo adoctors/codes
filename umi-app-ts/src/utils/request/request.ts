@@ -42,7 +42,6 @@ const customCodeMsg: ICode = {
  * 异常处理程序
  */
 const errorHandler = (error: any) => {
-  console.log(error)
   const { response = {} } = error;
   const errortext = codeMessage[response.status] || response.statusText;
   const { status, url, type } = response;
@@ -91,9 +90,7 @@ export default async (url: string, option: any) => {
   interface isObject {
     [key: string]: any;
   }
-  console.log(url)
   const data: isObject = (await extendRequest(url, option)) || {};
-  console.log(data)
   if (data.code) console.log(customCodeMsg[data.code]);
   switch (data.code) {
     case 10003:

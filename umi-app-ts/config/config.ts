@@ -8,7 +8,7 @@ const config: IConfig = {
   plugins,
   routes,
   treeShaking: true,
-  targets:{
+  targets: {
     ie: 11,
   },
   manifest: {

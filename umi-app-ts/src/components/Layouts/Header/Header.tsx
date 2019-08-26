@@ -3,7 +3,7 @@ import { connect } from 'dva';
 import Link from 'umi/link';
 import { Avatar, Menu, Dropdown, Icon } from 'antd';
 import styles from './Header.less';
-import logo from '../../../assets/dt_logo.png';
+import logo from '@/assets/dt_logo.png';
 
 const Header = props => {
   const userName = 'test';
@@ -13,7 +13,7 @@ const Header = props => {
       <Menu.Item>
         <div className={styles.dropdownMunuItem}>
           <Icon type="logout" />
-          <Link to="/" style={{color:'#666', marginLeft: 8}}>退出登陆</Link>
+          <Link to="/login" style={{color:'#666', marginLeft: 8}}>退出登陆</Link>
         </div>
       </Menu.Item>
     </Menu>

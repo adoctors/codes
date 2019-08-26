@@ -16,10 +16,14 @@ interface IReq {
   data?: string;
 }
 
+interface IObject {
+  [key: string]: any;
+}
+
 interface IRequestApiParams {
   apiName: string;
   reqType: string;
-  placeholerData?: object;
+  placeholerData?: IObject;
   queryData?: object;
   bodyData?: object;
   namespace: string;
@@ -33,7 +37,6 @@ export default ({
   bodyData,
   namespace,
 }: IRequestApiParams) => {
-  // const method = reqType.toLowerCase();
   let url = api[namespace][apiName];
   const req: IReq = { method: reqType };
 
@@ -46,7 +49,6 @@ export default ({
   }
 
   if (queryData && Object.keys(queryData).length) {
-    // url = `${url}?${stringify(queryData)}`;
     req.params = queryData;
   }
 

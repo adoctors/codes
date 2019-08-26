@@ -1,5 +1,5 @@
 export default {
-  'POST /login': (req, res) => {
+  'POST /api/login': (req, res) => {
     console.log(req.body)
     // const size = 10;
     // const page = Number(req.body.page);
@@ -9,9 +9,8 @@ export default {
         name: 'adoctors',
         age: 18,
       },
+      message: true,
     };
-    res.send({
-      data,
-    });
+    res.send(data);
   },
 };

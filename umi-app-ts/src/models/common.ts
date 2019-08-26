@@ -33,15 +33,13 @@ const CommonModel: CommonModelType = {
 
   effects: {
     *login({ payload, successCallback, failCallback }, { call, put }) {
-      console.log(payload)
       const { data } = yield call(requestApi, { ...payload, namespace });
-      console.log(data)
-      // if (data.code === 0) {
-      //   successCallback();
-      // } else {
-      //   const errMsg = data.message || data.code;
-      //   failCallback && failCallback(errMsg);
-      // }
+      if (data.code === 0) {
+        successCallback(data.message);
+      } else {
+        const errMsg = data.message || data.code;
+        failCallback && failCallback(errMsg);
+      }
     },
   },
 

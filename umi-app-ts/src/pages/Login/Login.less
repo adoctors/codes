@@ -2,24 +2,29 @@
 
 
 .LoginWrap {
+  position: relative;
+  top: 0;
+  left: 0;
   .wh(100%, 100vh);
   .bgColor(@baseBackgroundColor);
   .flex;
   justify-content: center;
 
   .LoginConWrap {
-    padding-top: 15%;
+    position: absolute;
+    top: 22%;
     .w(368px);
+    padding: 30px 0;
 
     .LogoWrap {
       .flex;
       justify-content: center;
-      padding-bottom:20px;
+      padding-bottom: 20px;
+
       &>img {
         display: block;
         .wh(231px, 60px);
       }
     }
-
   }
 }

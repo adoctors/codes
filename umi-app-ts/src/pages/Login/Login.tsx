@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'dva';
 import { Form, Icon, Input, Button } from 'antd';
+import Particles from 'react-particles-js';
 import { ConnectProps } from '@/models/connect';
+import router from 'umi/router';
 import styles from './Login.less';
 
 import logo from '../../assets/dt_logo.png';
@@ -16,11 +18,11 @@ const Login = (props: IProps): React.ReactElement => {
     dispatch,
   } = props;
 
-  const handleSubmit = e => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
-    validateFields((err, values) => {
+    validateFields((err: any, values: any) => {
       if (!err) {
-        console.log('Received values of form: ', values, dispatch);
+        // console.log('Received values of form: ', values);
         if (dispatch) {
           dispatch({
             type: 'common/login',
@@ -29,8 +31,8 @@ const Login = (props: IProps): React.ReactElement => {
               reqType: 'POST',
               bodyData: values,
             },
-            successCallback: res => {
-              // console.log(res)
+            successCallback: (success: any) => {
+              if (success) router.replace('/tags');
             },
           });
         }
@@ -40,6 +42,28 @@ const Login = (props: IProps): React.ReactElement => {
 
   return (
     <div className={styles.LoginWrap}>
+      <Particles
+        params={{
+          particles: {
+            number: {
+              value: 50,
+            },
+            size: {
+              value: 3,
+            },
+          },
+          interactivity: {
+            events: {
+              onhover: {
+                enable: true,
+                mode: 'repulse',
+              },
+            },
+          },
+        }}
+        height="98vh"
+        width="98vw"
+      />
       <div className={styles.LoginConWrap}>
         <div className={styles.LogoWrap}>
           <img src={logo} alt="" />
@@ -77,5 +101,4 @@ const Login = (props: IProps): React.ReactElement => {
   );
 };
 
-// export default Form.create()(Login);
 export default connect(({}) => ({}))(Form.create()(Login));

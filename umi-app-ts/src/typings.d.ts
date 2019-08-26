@@ -10,5 +10,7 @@ declare module '*.gif';
 declare module '*.bmp';
 declare module '*.tiff';
 declare module 'classnames';
+declare module 'react-particles-js';
+declare module 'qs';
 
 

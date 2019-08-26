@@ -3,8 +3,8 @@ import { connect } from 'dva';
 import classNames from 'classnames';
 import { Icon } from 'antd';
 import { ConnectState, ConnectProps } from '@/models/connect';
-import Header from '../components/Layouts/Header/Header';
-import SideBar from '../components/Layouts/SideBar/SideBar';
+import Header from '@/components/Layouts/Header/Header';
+import SideBar from '@/components/Layouts/SideBar/SideBar';
 
 import styles from './MainLayout.less';
 
