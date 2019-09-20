@@ -12,14 +12,21 @@ const router: IRoute[] = [
     routes: [
       {
         path: '/',
-        redirect: '/tags',
+        redirect: '/forms/overform',
       },
       {
-        path: '/tags',
-        name: '标签管理',
-        icon: 'tags',
+        path: '/forms/overform',
+        name: 'Forms相关',
+        icon: 'form',
         isNavigate: true,
-        component: './Tags/Index',
+        component: './Forms/Index',
+        routes: [
+          {
+            path: '/forms/overform',
+            name: 'form跨组件测试',
+            component: './Forms/components/OverForm/OverForm',
+          },
+        ],
       },
       {
         component: './404',

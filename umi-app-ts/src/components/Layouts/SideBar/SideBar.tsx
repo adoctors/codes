@@ -10,7 +10,7 @@ interface isObject {
   [key: string]: any;
 }
 
-const SideBar = (props: isObject): React.ReactNode => {
+const SideBar = (props: isObject):JSX.Element => {
   const {
     collapsed,
     route,
