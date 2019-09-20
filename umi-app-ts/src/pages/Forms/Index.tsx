@@ -5,7 +5,6 @@ import routerConfig from '../../../config/router.config';
 import styles from './Index.less';
 
 const Index = (props: any): JSX.Element => {
-
   const {
     location: { pathname },
   } = props;
@@ -30,15 +29,16 @@ const Index = (props: any): JSX.Element => {
   );
 
   useEffect(() => {
-    setCurrentName(currentMaps().filter((item:any)=> item.path === pathname)[0].name);
+    setCurrentName(currentMaps().filter((item: any) => item.path === pathname)[0].name);
   }, [pathname]);
 
   return (
     <div className={styles.FormsWrap}>
       <div className={styles.headers}>
         <Dropdown overlay={munu}>
-          <span>
-            {currentName} <Icon type="down" />
+          <span style={{ color: '#2fe1a8' }}>
+            <span style={{ display: 'inline-block', width: 140 }}>{currentName}</span>
+            <Icon type="down" />
           </span>
         </Dropdown>
       </div>

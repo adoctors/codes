@@ -15,7 +15,7 @@ const router: IRoute[] = [
         redirect: '/forms/overform',
       },
       {
-        path: '/forms/overform',
+        path: '/forms/',
         name: 'Forms相关',
         icon: 'form',
         isNavigate: true,
@@ -25,6 +25,11 @@ const router: IRoute[] = [
             path: '/forms/overform',
             name: 'form跨组件测试',
             component: './Forms/components/OverForm/OverForm',
+          },
+          {
+            path: '/forms/baseform',
+            name: 'form开始',
+            component: './Forms/components/BaseForm/BaseForm',
           },
         ],
       },
