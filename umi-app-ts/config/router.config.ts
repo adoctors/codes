@@ -22,6 +22,10 @@ const router: IRoute[] = [
         component: './Forms/Index',
         routes: [
           {
+            path: '/forms/',
+            redirect: '/forms/overform',
+          },
+          {
             path: '/forms/overform',
             name: 'form跨组件测试',
             component: './Forms/components/OverForm/OverForm',
