@@ -38,6 +38,47 @@ const router: IRoute[] = [
         ],
       },
       {
+        path: '/css3/',
+        name: 'CSS3',
+        icon: 'star',
+        isNavigate: true,
+        component: './CSS3/Index',
+        routes: [
+          {
+            path: '/css3/',
+            redirect: '/css3/transitions',
+          },
+          {
+            path: '/css3/transitions',
+            name: 'Transitions',
+            component: './CSS3/components/Transitions/Transitions',
+          },
+          {
+            path: '/css3/animations',
+            name: 'Animations',
+            component: './CSS3/components/Animations/Animations',
+          },
+        ],
+      },
+      {
+        path: '/test/',
+        name: 'Test',
+        icon: 'code',
+        isNavigate: true,
+        component: './Test/Index',
+        routes: [
+          {
+            path: '/test/',
+            redirect: '/test/keylist',
+          },
+          {
+            path: '/test/keylist',
+            name: 'keylist',
+            component: './Test/components/Keylist/Keylist',
+          },
+        ],
+      },
+      {
         component: './404',
       },
     ],
