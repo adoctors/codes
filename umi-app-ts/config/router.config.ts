@@ -74,7 +74,7 @@ const router: IRoute[] = [
           {
             path: '/test/keylist',
             name: 'keylist',
-            component: './Test/components/Keylist/Keylist',
+            component: './Test/components/Keylist/Index',
           },
         ],
       },

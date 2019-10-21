@@ -1,0 +1,29 @@
+.MyModal {
+  top: 64px;
+
+  :global {
+    .ant-modal {
+      top: 5vh;
+    }
+
+    .ant-modal-header,
+    .ant-modal-footer {
+      border: none;
+    }
+
+    .ant-modal-body {
+      padding: 0 24px;
+      // max-height: 372px;
+      max-height: 60vh;
+      overflow-y: auto;
+    }
+  }
+}
+
+.MyModalCollapsedF {
+  left: 200px;
+}
+
+.MyModalCollapsedT {
+  left: 50px;
+}

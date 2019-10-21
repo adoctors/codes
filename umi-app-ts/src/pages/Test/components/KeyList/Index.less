@@ -1,0 +1,45 @@
+@import '../../../../global.less';
+
+.SettingModalWrap {
+  .settingConWrap {
+    .w(100%);
+
+    .tabWrap {
+      .wh(100%, 34px);
+      .flex;
+
+      &>div {
+        .wh(104px, 34px);
+        box-sizing: border-box;
+        .flexCenter;
+        margin-right: 12px;
+        border-radius: 2px 2px 0 0;
+        font-size: 14px;
+        .cp;
+      }
+
+      .tabDefault {
+        border: 1px solid #d2d2d2;
+        border-bottom: none;
+        color: #333;
+      }
+
+      .tabActive {
+        color: #fff;
+        background-color: #3F91F7;
+      }
+
+    }
+  }
+
+  .modalFooterWrap {
+    .flexItemCenter;
+    justify-content: space-between;
+    padding: 10px 8px 20px 28px;
+  }
+
+  .resetBtn {
+    .cp;
+    color: #3F91F7;
+  }
+}

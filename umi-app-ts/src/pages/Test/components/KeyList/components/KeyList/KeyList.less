@@ -1,0 +1,50 @@
+@import '../../../../../../global.less';
+
+.wrap {
+  box-sizing: content-box;
+  min-width: 506px;
+  .h(300px);
+  border: 1px solid #d2d2d2;
+  .flex;
+  .showListWrap,
+  .hideListWrap{
+    box-sizing: border-box;
+    .wh(50%,300px);
+    .title{
+      box-sizing: border-box;
+      padding: 0 25px;
+      .wh(100%,34px);
+      font-size: 12px;
+      line-height: 34px;
+      background-color:#F8F8F8;
+      :nth-child(1){
+        font-weight: 700;
+      }
+    }
+    .listWrap{
+      .wh(100%,266px);
+      // background: pink;
+      overflow-y: auto;
+      .optionWrap{
+        box-sizing: border-box;
+        padding: 0 25px;
+        border-bottom: 1px solid #f2f2f2;
+        .wh(100%,34px);
+        .flexItemCenter;
+        justify-content: space-between;
+      }
+    }
+  }
+  .showListWrap{
+    border-right: 1px solid #d2d2d2;
+    .title{
+      .flex;
+      justify-content: space-between;
+    }
+  }
+  // .hideListWrap{
+  //   .optionWrap{
+  //     justify-content: space-between;
+  //   }
+  // }
+}

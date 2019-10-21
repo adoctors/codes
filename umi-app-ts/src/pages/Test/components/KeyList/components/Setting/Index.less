@@ -1,0 +1,47 @@
+.SettingModalWrap {
+  .settingConWrap {
+    width: 100%;
+
+    .tabWrap {
+      display: flex;
+      width: 100%;
+      height: 34px;
+
+      &>div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 104px;
+        height: 34px;
+        box-sizing: border-box;
+        margin-right: 12px;
+        border-radius: 2px 2px 0 0;
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      .tabDefault {
+        border: 1px solid #d2d2d2;
+        border-bottom: none;
+        color: #333;
+      }
+
+      .tabActive {
+        color: #fff;
+        background-color: #3F91F7;
+      }
+    }
+  }
+
+  .modalFooterWrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 8px 20px 28px;
+  }
+
+  .resetBtn {
+    cursor: pointer;
+    color: #3F91F7;
+  }
+}
