@@ -15,10 +15,11 @@ export default (appInfo: EggAppInfo) => {
 
   config.mongoose = {
     client: {
-      url: 'mongodb://node1.rcrai.com:37992/admin',
+      url: 'mongodb://xxx/xxx',
       options: {
-        user: 'rcrai',
-        pass: 'XysRHn5N12ys4oJ7cB1stQ'
+        user: 'xxx',
+        pass: 'xxx',
+        useUnifiedTopology: true
       },
     },
   }
