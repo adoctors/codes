@@ -15,6 +15,10 @@ const config: IConfig = {
   manifest: {
     basePath: '/',
   },
+  lessLoaderOptions: {
+    javascriptEnabled: true,
+    paths: [path.resolve(__dirname, '../src/')],
+  },
   chainWebpack: webpackPlugin,
 };
 
