@@ -1,4 +1,7 @@
 {
+  "name": "dealtape",
+  "version": "2019.10.29",
+  "description": "umi-app-ts",
   "private": true,
   "scripts": {
     "start": "set PORT=8009 && umi dev",

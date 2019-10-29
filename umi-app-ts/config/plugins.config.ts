@@ -24,6 +24,11 @@ const plugins: IPlugin[] = [
           src: '<%= PUBLIC_PATH %>page.head.script.js',
         },
       ],
+      locale: {
+        enable: true,
+        default: 'zh-CN',
+        baseNavigator: true,
+      },
     },
   ],
 ];

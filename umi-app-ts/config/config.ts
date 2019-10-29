@@ -1,6 +1,7 @@
 import { IConfig } from 'umi-types';
 import routes from './router.config';
 import plugins from './plugins.config';
+import webpackPlugin from './chainWebpack.config';
 import path from 'path';
 
 // ref: https://umijs.org/config/
@@ -14,6 +15,7 @@ const config: IConfig = {
   manifest: {
     basePath: '/',
   },
+  chainWebpack: webpackPlugin,
 };
 
 export default config;

@@ -1,0 +1,65 @@
+@baseColor: #333;
+@baseBackgroundColor: #001529;
+
+.w(@width) {
+  width: @width;
+}
+
+.h(@height) {
+  height: @height;
+}
+
+.wh(@width, @height) {
+  width: @width;
+  height: @height;
+}
+
+.lh(@lh) {
+  line-height: @lh;
+}
+
+.fontSizeColor(@size, @color) {
+  font-size: @size;
+  color: @color;
+}
+
+.bgColor(@bgColor) {
+  background-color: @bgColor;
+}
+
+.flex() {
+  display: flex;
+}
+
+.flexAuto() {
+  .flex;
+  flex: auto;
+}
+
+.flexItemCenter() {
+  .flex;
+  align-items: center;
+}
+
+.flexCenter() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cp() {
+  cursor: pointer;
+}
+
+.ellipsis() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ellipsisNum(@num) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: @num;
+  overflow: hidden;
+}
