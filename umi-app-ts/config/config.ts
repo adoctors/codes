@@ -15,6 +15,13 @@ const config: IConfig = {
   manifest: {
     basePath: '/',
   },
+
+  /** 非根目录打包*/
+  // base: '/dist',
+  // history: 'hash',
+  // publicPath: '/dist/',
+  /** 非根目录打包*/
+
   lessLoaderOptions: {
     javascriptEnabled: true,
     paths: [path.resolve(__dirname, '../src/')],
