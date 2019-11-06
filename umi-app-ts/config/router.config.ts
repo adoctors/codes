@@ -76,6 +76,11 @@ const router: IRoute[] = [
             name: 'keylist',
             component: './Test/components/Keylist/Index',
           },
+          {
+            path: '/test/multiple',
+            name: 'multiple',
+            component: './Test/components/Multiple',
+          },
         ],
       },
       {

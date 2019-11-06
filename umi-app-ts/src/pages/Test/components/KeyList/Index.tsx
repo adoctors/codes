@@ -152,14 +152,14 @@ const Index = (props: any) => {
 
   return (
     <Fragment>
-      <Icon
+      {/* <Icon
         type="setting"
         onClick={() => {
           setModalVisible(true);
         }}
-      />
+      /> */}
       <div>
-        123
+        排序穿梭框
         <SettingIcon />
       </div>
       <MyModal
