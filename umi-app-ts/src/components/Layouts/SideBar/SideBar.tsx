@@ -40,8 +40,8 @@ const SideBar = (props: isObject): JSX.Element => {
     <div className={styles.SideBarWrap}>
       <Menu selectedKeys={[currentNav]} mode="inline" theme="dark">
         {navList.map(
-          (item: isObject): React.ReactNode => (
-            <Menu.Item key={item.path}>
+          (item: isObject, index: number): React.ReactNode => (
+            <Menu.Item key={item.path}  data-setp={index}>
               <Icon type={item.icon} />
               <Link to={item.path}>{collapsed ? '' : item.name}</Link>
             </Menu.Item>

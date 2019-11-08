@@ -81,6 +81,17 @@ const router: IRoute[] = [
             name: 'multiple',
             component: './Test/components/Multiple',
           },
+          {
+            path: '/test/introjs',
+            name: 'introjs',
+            component: './Test/components/Introjs',
+          },
+          {
+            path: '/test/introjs-react',
+            name: 'introjs-react',
+            component: './Test/components/Introjsreact',
+          },
+          
         ],
       },
       {
