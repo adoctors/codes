@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { IObject } from '@/models/common.d';
+import { IObject } from '@/models/connect.d';
 import { Switch, message } from 'antd';
-import { DndProvider } from 'react-dnd';
+import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import update from 'immutability-helper';
-import { KeyListProps, KeyListListItemProps } from '../../KeyListInterface';
+import { KeyListProps, KeyListListItemProps } from '../../index.d';
 import ListItem from './ListItem';
 
 import styles from './KeyList.less';
+
+const maxOptionLen: number = 10;
 
 const KeyList = (props: KeyListProps) => {
   const { dataHeader, settingType, getResult } = props;
@@ -75,26 +77,24 @@ const KeyList = (props: KeyListProps) => {
   };
 
   return (
-    <div className={styles.wrap}>
+    <div className={styles.KeyListWrap}>
       <div className={styles.showListWrap}>
         <div className={styles.title}>
           <span>显示字段</span>
           <span>最多10个字段</span>
         </div>
         <div className={styles.listWrap}>
-          <DndProvider backend={HTML5Backend}>
-            {showKeyList.map((item, index) => (
-              <ListItem
-                key={item.key}
-                index={index}
-                styles={styles}
-                item={item}
-                itemMove={itemMove}
-                showChange={showChange}
-                length={showKeyList.length}
-              />
-            ))}
-          </DndProvider>
+          {showKeyList.map((item, index) => (
+            <ListItem
+              key={item.key}
+              index={index}
+              styles={styles}
+              item={item}
+              itemMove={itemMove}
+              showChange={showChange}
+              length={showKeyList.length}
+            />
+          ))}
         </div>
       </div>
 
@@ -120,4 +120,4 @@ const KeyList = (props: KeyListProps) => {
   );
 };
 
-export default KeyList;
+export default DragDropContext(HTML5Backend)(KeyList);

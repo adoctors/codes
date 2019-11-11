@@ -12,25 +12,24 @@ import dataHeader from './dataHeader';
 
 const propsData = {
   dataHeader,
-  bookName:'',
-  sheetName:'',
-  level:'',
-  title:'',
+  bookName: '',
+  sheetName: '',
+  level: '',
+  title: '',
   settingType: 'header_visible',
 };
 
-
 interface IProps {
-   /** 接口参数需要值*/
-   bookName: string,
-   /** 接口参数需要值*/
-   sheetName: string,
-   /** 接口参数需要值*/
-   level: 'business' | 'staff',
-   /** Modal的title*/
-   title: string,
-   /** 设置哪个类型的字段*/
-   settingType: 'header_visible' | 'searchbar_visible',
+  /** 接口参数需要值*/
+  bookName: string;
+  /** 接口参数需要值*/
+  sheetName: string;
+  /** 接口参数需要值*/
+  level: 'business' | 'staff';
+  /** Modal的title*/
+  title: string;
+  /** 设置哪个类型的字段*/
+  settingType: 'header_visible' | 'searchbar_visible';
 }
 
 const Index = (props: any) => {
@@ -112,10 +111,10 @@ const Index = (props: any) => {
     setModalVisible(false);
   };
 
-  const reset = ():void => {
+  const reset = (): void => {
     // console.log('reset')
     setModalVisible(false);
-  }
+  };
 
   const SettingContent: React.ReactNode = (
     <div className={styles.settingConWrap}>
@@ -140,7 +139,9 @@ const Index = (props: any) => {
 
   const ModalFooter: React.ReactNode = (
     <div className={styles.modalFooterWrap}>
-      <span className={styles.resetBtn} onClick={reset}>重置显示字段</span>
+      <span className={styles.resetBtn} onClick={reset}>
+        重置显示字段
+      </span>
       <div>
         <Button onClick={modalOk}>取消</Button>
         <Button type="primary" onClick={modalCancel}>
@@ -149,6 +150,17 @@ const Index = (props: any) => {
       </div>
     </div>
   );
+
+  const settingIconProps = {
+    bookName: 'bookName',
+    sheetName: 'sheetName',
+    level: 'business',
+    title: '设置自定义字段',
+    resourceType: 'header',
+    data: dataHeader,
+    onOkCallBack: () => {},
+    trigger: <div>xxx</div>,
+  };
 
   return (
     <Fragment>
@@ -160,7 +172,7 @@ const Index = (props: any) => {
       /> */}
       <div>
         排序穿梭框
-        <SettingIcon />
+        <SettingIcon {...settingIconProps} />
       </div>
       <MyModal
         title={`分组`}

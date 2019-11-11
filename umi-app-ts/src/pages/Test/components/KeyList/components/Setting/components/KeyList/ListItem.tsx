@@ -25,30 +25,40 @@ const targetSpec = {
 
 const Items = (props: IObject) => {
   const { connectDragSource, connectDropTarget, styles, item, length, showChange } = props;
-  const style = length === 1 ? {} : { cursor: 'move' };
+
+  const hoverBgColor = {
+    backgroundColor: props.isOver ? '#DEF4FC' : '#fff',
+  };
+
+  const style =
+    length === 1
+      ? {
+          paddingLeft: '9px',
+        }
+      : { cursor: 'move', paddingLeft: '9px', ...hoverBgColor };
+
+  const SwitchTooltipProps = length === 1 ? {} : { visible: false };
+
+  const ItemTooltipProps = props.isOver || length === 1 ? { visible: false } : {};
 
   const Item: React.ReactElement = (
-    <div className={styles.optionWrap} style={style}>
-      <span style={{ width: '50%' }}>{item.name}</span>
-      {length === 1 ? (
-        <Tooltip title="显示字段至少一个">
-          <Switch
-            checkedChildren="开"
-            unCheckedChildren="关"
-            checked={item.visible}
-            onChange={(checked, eve) => showChange(item, checked, eve)}
-          />
-        </Tooltip>
-      ) : (
-        <Switch
-          checkedChildren="开"
-          unCheckedChildren="关"
-          checked={item.visible}
-          onChange={(checked, eve) => showChange(item, checked, eve)}
-        />
-      )}
-
-      <Icon type="more" />
+    <div>
+      <Tooltip title="拖拽字段名支持排序" {...ItemTooltipProps}>
+        <div className={styles.optionWrap} style={style}>
+          <span style={{ width: '70%' }}>
+            <Icon type="more" style={{ marginRight: '4px' }} />
+            {item.name}
+          </span>
+          <Tooltip title="显示字段至少一个" {...SwitchTooltipProps}>
+            <Switch
+              checkedChildren="开"
+              unCheckedChildren="关"
+              checked={item.visible}
+              onChange={(checked, eve) => showChange(item, checked, eve)}
+            />
+          </Tooltip>
+        </div>
+      </Tooltip>
     </div>
   );
 

@@ -91,7 +91,6 @@ const router: IRoute[] = [
             name: 'introjs-react',
             component: './Test/components/Introjsreact',
           },
-          
         ],
       },
       {

@@ -4,6 +4,8 @@ import { GlobalModelState } from './global';
 
 export { GlobalModelState };
 
+export type IObject = { [key: string]: any };
+
 export interface Loading {
   global: boolean;
   effects: { [key: string]: boolean | undefined };

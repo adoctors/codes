@@ -1,72 +1,45 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import isEqual from 'lodash/isEqual';
-import { IObject } from '@/models/common.d';
-import { Modal, Icon, Button } from 'antd';
-import { KeyListListItemProps } from './KeyListInterface';
+import { IObject, ConnectProps } from '@/models/connect.d';
+import { Modal, Icon, Button, message } from 'antd';
+import { connect } from 'dva';
+import { KeyListListItemProps } from './index.d';
 import KeyList from './components/KeyList/KeyList';
 import MyModal from '@/components/MyModal/MyModal';
 import styles from './Index.less';
 
-import dataHeader from './dataHeader';
-
-const propsData = {
-  dataHeader,
-  bookName:'',
-  sheetName:'',
-  level:'',
-  title:'',
-  settingType: 'header_visible',
-};
-
-
-interface IProps {
-   /** 接口参数需要值*/
-   bookName: string,
-   /** 接口参数需要值*/
-   sheetName: string,
-   /** 接口参数需要值*/
-   level: 'business' | 'staff',
-   /** Modal的title*/
-   title: string,
-   /** 设置哪个类型的字段*/
-   settingType: 'header_visible' | 'searchbar_visible',
+interface IProps extends ConnectProps, IObject {
+  /** 接口参数需要值*/
+  bookName: string;
+  /** 接口参数需要值*/
+  sheetName: string;
+  /** 接口参数需要值*/
+  level: 'business' | 'staff';
+  /** Modal的title*/
+  title: string;
+  /** 当前资源类型*/
+  resourceType: 'header' | 'searchbar';
+  /** 设置数据源*/
+  data: IObject[];
+  /** 设置成功的回调*/
+  onOkCallBack: () => void;
+  /** 不同于Icon的触发器*/
+  trigger?: React.ReactElement;
 }
 
-const Index = (props: any) => {
-  const [currentTab, setCurrentTab] = useState<string>('header_visible');
-  const [modalVisible, setModalVisible] = useState<boolean>(false);
-  const { dataHeader, settingType } = propsData;
+// 资源类型对应的字段
+const resourceTypeMap = {
+  header: 'header_visible',
+  searchbar: 'searchbar_visible',
+};
 
-  const tabList = [
-    {
-      title: '显示字段',
-      key: 'header_visible',
-    },
-    {
-      title: '筛选字段',
-      key: 'searchbar_visible',
-    },
-  ];
+let showKeyListResult: KeyListListItemProps[] = [];
+let hideKeyListResult: KeyListListItemProps[] = [];
 
-  let showKeyListResult: KeyListListItemProps[] = [];
-  let hideKeyListResult: KeyListListItemProps[] = [];
-
-  const ifTabToggle = () => {
-    // 判断
-    const FormatHeaderData = (list: IObject[]): KeyListListItemProps[] =>
-      list.map((op: IObject) => ({
-        name: op.name,
-        key: op.key,
-        visible: op[settingType],
-      }));
-
-    const ResShowKeyList = FormatHeaderData(
-      dataHeader.filter((item: IObject) => item[settingType]),
-    );
-    // console.log(showKeyListResult, ResShowKeyList);
-    return showKeyListResult.length === 0 || isEqual(showKeyListResult, ResShowKeyList);
-  };
-
+const Index = (props: IProps): React.ReactElement => {
+  const { dispatch, bookName, sheetName, level, title, resourceType, data, trigger } = props;
+  const [modalVisible, setModalVisible] = useState<boolean>(true);
+  // console.log(data, resourceTypeMap[resourceType]);
   const getResult = (
     showKeyList: KeyListListItemProps[],
     hideKeyList: KeyListListItemProps[],
@@ -75,35 +48,12 @@ const Index = (props: any) => {
     hideKeyListResult = hideKeyList;
   };
 
-  const getDataHeader = (): void => {
-    // 用于获取dataHeader
-  };
-
-  useEffect(() => {
-    setCurrentTab(settingType);
-  }, []);
-
-  const tabClick = (key: string): void => {
-    // console.log(ifTabToggle());
-    if (ifTabToggle()) {
-      setCurrentTab(key);
-    } else {
-      Modal.confirm({
-        title: '提示',
-        content: '显示字段有数据未保存，请保存',
-        maskClosable: true,
-        mask: false,
-        cancelText: '取消',
-        okText: '保存',
-        onOk: () => {
-          // console.log('xxx');
-          setCurrentTab(key);
-        },
-      });
-    }
+  const modalShow = (): void => {
+    setModalVisible(true);
   };
 
   const modalOk = (): void => {
+    message.success(`设置成功`);
     setModalVisible(false);
   };
 
@@ -111,63 +61,34 @@ const Index = (props: any) => {
     setModalVisible(false);
   };
 
-  const reset = ():void => {
-    // console.log('reset')
-    setModalVisible(false);
-  }
-
-  const SettingContent: React.ReactNode = (
-    <div className={styles.settingConWrap}>
-      <div className={styles.tabWrap}>
-        {tabList.map(item => (
-          <div
-            className={item.key === currentTab ? styles.tabActive : styles.tabDefault}
-            key={item.key}
-            onClick={() => tabClick(item.key)}
-          >
-            {item.title}
-          </div>
-        ))}
-      </div>
-      <KeyList
-        dataHeader={dataHeader}
-        settingType={currentTab as 'header_visible' | 'searchbar_visible'}
-        getResult={getResult}
-      />
-    </div>
-  );
-
-  const ModalFooter: React.ReactNode = (
-    <div className={styles.modalFooterWrap}>
-      <span className={styles.resetBtn} onClick={reset}>重置显示字段</span>
-      <div>
-        <Button onClick={modalOk}>取消</Button>
-        <Button type="primary" onClick={modalCancel}>
-          保存
-        </Button>
-      </div>
-    </div>
-  );
-
   return (
     <Fragment>
-      <Icon
-        type="setting"
-        onClick={() => {
-          setModalVisible(true);
-        }}
-      />
+      {trigger ? (
+        <span onClick={modalShow}>{trigger}</span>
+      ) : (
+        <Icon type="setting" onClick={modalShow} />
+      )}
+
       <MyModal
-        title={`分组`}
+        title={title}
         width="560px"
         visible={modalVisible}
-        footer={ModalFooter}
-        content={SettingContent}
+        content={
+          // 排序插件版本问题
+          <KeyList
+            dataHeader={data}
+            settingType={resourceTypeMap[resourceType] as 'header_visible' | 'searchbar_visible'}
+            getResult={getResult}
+          />
+        }
         onCancel={modalCancel}
+        onOk={modalOk}
+        okText="确认"
+        cancelText="取消"
         wrapClassName={styles.SettingModalWrap}
       />
     </Fragment>
   );
 };
 
-export default Index;
+export default connect(() => ({}))(Index);
