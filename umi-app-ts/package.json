@@ -24,6 +24,7 @@
     "react-dnd-html5-backend": "^9.4.0",
     "react-dom": "^16.8.6",
     "react-particles-js": "^2.7.0",
+    "umi": "^2.11.3",
     "umi-request": "^1.2.3"
   },
   "devDependencies": {
@@ -44,7 +45,7 @@
     "tslint": "^5.12.0",
     "tslint-eslint-rules": "^5.4.0",
     "tslint-react": "^3.6.0",
-    "umi": "^2.7.0",
+    "umi": "^2.11.3",
     "umi-plugin-react": "^1.8.0",
     "umi-types": "^0.3.0"
   },
