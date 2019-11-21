@@ -1,6 +1,7 @@
 module.exports = app => {
   const mongoose = app.mongoose;
   const Schema = mongoose.Schema;
+  const conn = app.mongooseDB.get('recurrent_voice');
 
   const CallsSchema = new Schema({
     bid: {
@@ -29,5 +30,5 @@ module.exports = app => {
     }
   });
 
-  return mongoose.model("Calls", CallsSchema);
+  return conn.model("Calls", CallsSchema);
 };

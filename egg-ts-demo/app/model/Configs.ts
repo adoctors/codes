@@ -1,6 +1,7 @@
 module.exports = app => {
   const mongoose = app.mongoose;
   const Schema = mongoose.Schema;
+  const conn = app.mongooseDB.get('recurrent_voice');
 
   const ConfigsSchema = new Schema({
     key: {
@@ -14,5 +15,5 @@ module.exports = app => {
     }
   });
 
-  return mongoose.model("configs", ConfigsSchema);
+  return conn.model("configs", ConfigsSchema);
 };

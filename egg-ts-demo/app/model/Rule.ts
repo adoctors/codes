@@ -1,6 +1,7 @@
 module.exports = app => {
   const mongoose = app.mongoose;
   const Schema = mongoose.Schema;
+  const conn = app.mongooseDB.get('recurrent_voice');
 
   const RuleSchema = new Schema({
     语义点: {
@@ -23,5 +24,5 @@ module.exports = app => {
     },
   });
 
-  return mongoose.model('Rule', RuleSchema);
+  return conn.model('Rule', RuleSchema);
 };

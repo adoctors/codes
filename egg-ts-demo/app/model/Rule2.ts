@@ -1,6 +1,7 @@
 module.exports = app => {
   const mongoose = app.mongoose;
   const Schema = mongoose.Schema;
+  const conn = app.mongooseDB.get('recurrent_voice');
 
   const Rule2Schema = new Schema({
     bid: Schema.Types.ObjectId,
@@ -20,5 +21,5 @@ module.exports = app => {
     update_time: Date
   });
 
-  return mongoose.model("Rule2", Rule2Schema);
+  return conn.model("Rule2", Rule2Schema);
 };
