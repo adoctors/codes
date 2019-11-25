@@ -7,4 +7,6 @@ export default (app: Application) => {
   router.get("/rule/:id", controller.home.detail);
   router.get("/v5/rules", controller.rule2.index);
   router.get("/v5/configs", controller.configs.index);
+  router.get("/other", controller.others.index);
+  router.get("/other/req_list/:id", controller.others.reqListDetail);
 };
