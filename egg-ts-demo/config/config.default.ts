@@ -15,18 +15,18 @@ export default (appInfo: EggAppInfo) => {
   config.mongoose = {
     clients: {
       layev: {
-        url: "mongodb://xx.xx.xx.xx:xxx/dbName1?authSource=auth",
+        url: "mongodb://39.104.89.130:37991/layev?authSource=admin",
         options: {
-          user: "xx",
-          pass: "xx",
+          user: "rcrai_admin",
+          pass: "rcrai_keg",
           useUnifiedTopology: true
         }
       },
       recurrent_voice: {
-        url: "mongodb://xx.xx.xx.xx:xxx/dbName2?authSource=auth",
+        url: "mongodb://39.104.89.130:37991/recurrent_voice?authSource=admin",
         options: {
-          user: "xx",
-          pass: "xx",
+          user: "rcrai_admin",
+          pass: "rcrai_keg",
           useUnifiedTopology: true
         }
       }

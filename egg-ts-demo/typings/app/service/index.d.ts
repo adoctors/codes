@@ -2,10 +2,12 @@
 // Do not modify this file!!!!!!!!!
 
 import 'egg';
+import ExportEmails from '../../../app/service/emails';
 import ExportRule from '../../../app/service/Rule';
 
 declare module 'egg' {
   interface IService {
+    emails: ExportEmails;
     rule: ExportRule;
   }
 }

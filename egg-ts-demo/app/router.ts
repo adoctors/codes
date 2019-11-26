@@ -8,5 +8,8 @@ export default (app: Application) => {
   router.get("/v5/rules", controller.rule2.index);
   router.get("/v5/configs", controller.configs.index);
   router.get("/other", controller.others.index);
+  router.get("/other/yzm", controller.others.yzm);
+  router.get("/other/email", controller.emails.index);
+  router.get("/other/email/send", controller.emails.send);
   router.get("/other/req_list/:id", controller.others.reqListDetail);
 };
