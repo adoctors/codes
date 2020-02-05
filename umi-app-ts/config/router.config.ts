@@ -35,6 +35,11 @@ const router: IRoute[] = [
             name: 'form开始',
             component: './Forms/components/BaseForm/BaseForm',
           },
+          {
+            path: '/forms/nestform',
+            name: 'form嵌套',
+            component: './Forms/components/NestForm',
+          },
         ],
       },
       {
