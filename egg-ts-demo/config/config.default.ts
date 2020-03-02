@@ -1,5 +1,7 @@
 import { EggAppConfig, EggAppInfo, PowerPartial } from "egg";
 
+const path = require("path");
+
 export default (appInfo: EggAppInfo) => {
   const config = {} as PowerPartial<EggAppConfig>;
 
@@ -24,12 +26,14 @@ export default (appInfo: EggAppInfo) => {
       }
     }
   };
-
+  
   config.logger = {
     // 日志输出配置，该配置会输出两份
     // egg-ts-demo-web.log  区块清晰
     // egg-ts-demo-web.json.log   容易工具化
-    outputJSON: true
+    outputJSON: true,
+    dir: path.join(appInfo.root, "logs/dev"),
+    appLogName: "dev.log"
   };
 
   // add your egg config in here
