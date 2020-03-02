@@ -14,23 +14,22 @@ export default (appInfo: EggAppInfo) => {
 
   config.mongoose = {
     clients: {
-      layev: {
-        url: "mongodb://39.104.89.130:37991/layev?authSource=admin",
-        options: {
-          user: "rcrai_admin",
-          pass: "rcrai_keg",
-          useUnifiedTopology: true
-        }
-      },
       recurrent_voice: {
-        url: "mongodb://39.104.89.130:37991/recurrent_voice?authSource=admin",
-        options: {
-          user: "rcrai_admin",
-          pass: "rcrai_keg",
-          useUnifiedTopology: true
-        }
+        url: "mongodb://localhost:27017/rcrai_web",
+        options: {}
+      },
+      layev: {
+        url: "mongodb://localhost:27017/layev",
+        options: {}
       }
     }
+  };
+
+  config.logger = {
+    // 日志输出配置，该配置会输出两份
+    // egg-ts-demo-web.log  区块清晰
+    // egg-ts-demo-web.json.log   容易工具化
+    outputJSON: true
   };
 
   // add your egg config in here
