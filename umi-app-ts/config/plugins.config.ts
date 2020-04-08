@@ -8,7 +8,7 @@ const plugins: IPlugin[] = [
       antd: true,
       dva: true,
       dynamicImport: { webpackChunkName: true },
-      title: 'rcrai',
+      title: 'adoctors',
       dll: false,
       routes: {
         exclude: [

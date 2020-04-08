@@ -96,6 +96,11 @@ const router: IRoute[] = [
             name: 'introjs-react',
             component: './Test/components/Introjsreact',
           },
+          {
+            path: '/test/echarts_for_react',
+            name: 'echarts_for_react',
+            component: './Test/components/echarts_for_react',
+          },
         ],
       },
       {

@@ -6,7 +6,7 @@ import { ConnectProps } from '@/models/connect';
 import router from 'umi/router';
 import styles from './Login.less';
 
-import logo from '../../assets/dt_logo.png';
+import logo from '../../assets/logo-b.png';
 
 interface IProps extends ConnectProps {
   [key: string]: any;
