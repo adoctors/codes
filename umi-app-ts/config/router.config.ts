@@ -35,6 +35,11 @@ const router: IRoute[] = [
             name: 'form开始',
             component: './Forms/components/BaseForm/BaseForm',
           },
+          {
+            path: '/forms/nestform',
+            name: 'form嵌套',
+            component: './Forms/components/NestForm',
+          },
         ],
       },
       {
@@ -105,6 +110,11 @@ const router: IRoute[] = [
             path: '/test/react-scrollbar',
             name: 'react-scrollbar',
             component: './Test/components/ReactScrollbar',
+          },
+          {
+            path: '/test/echarts_for_react',
+            name: 'echarts_for_react',
+            component: './Test/components/echarts_for_react',
           },
         ],
       },
