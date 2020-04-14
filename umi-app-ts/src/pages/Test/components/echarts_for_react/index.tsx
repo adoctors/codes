@@ -1,11 +1,21 @@
 import React, { useState, useEffect, Fragment, useRef } from 'react';
+import moment from 'moment';
 import { IObject } from '@/models/common.d';
 
 import ReactEcharts from 'echarts-for-react';
 
 import styles from './style.less';
 
+const random = (min: number, max: number): number => Math.round(Math.random() * (max - min) + min);
+
+const getDaysBefore = (num: number): string[] =>
+  Array.from({ length: num }, (item, i) =>
+    moment(new Date(new Date().setDate(new Date().getDate() - (num - i)))).format('YYYY-MM-DD'),
+  );
+
 const Index = () => {
+  // tooltip时成单率带%
+  // 昨天往前默认15天
   const ReactEchartsRef: any = useRef(null);
   const widthChange = () => {
     if (ReactEchartsRef && ReactEchartsRef.current) {
@@ -26,14 +36,21 @@ const Index = () => {
     // 提示框组件
     tooltip: {
       trigger: 'axis',
+      padding: [5, 10],
+      formatter: (params = []) => {
+        const x: IObject = params[0];
+        const y: IObject = params[1];
+        return `${x.name} <br />${x.marker} ${x.seriesName}: ${x.data}% <br />${y.marker} ${y.seriesName}: ${y.data}`;
+      },
     },
     // 图例
     legend: {
       top: 0,
-      left: '3%',
+      left: 'left',
       data: ['top20%成单率', '整体成单率'],
       textStyle: {
-        fontSize: 18,
+        fontSize: 14,
+        fontWeight: 'bold',
       },
     },
     // （直角坐标系底板）
@@ -65,42 +82,17 @@ const Index = () => {
         // label旋转45°
         rotate: 45,
       },
-      data: [
-        '2020-01-01',
-        '2020-01-02',
-        '2020-01-03',
-        '2020-01-04',
-        '2020-01-05',
-        '2020-01-06',
-        '2020-01-07',
-        '2020-01-08',
-        '2020-01-09',
-        '2020-01-10',
-        '2020-01-11',
-        '2020-01-12',
-        '2020-01-13',
-        '2020-01-14',
-        '2020-01-15',
-        '2020-01-16',
-        '2020-01-17',
-        '2020-01-18',
-        '2020-01-19',
-        '2020-01-21',
-        '2020-01-22',
-        '2020-01-23',
-        '2020-01-24',
-        '2020-01-25',
-        '2020-01-26',
-        '2020-01-27',
-        '2020-01-28',
-        '2020-01-29',
-        '2020-01-30',
-      ],
+      data: Array.from(
+        { length: 30 },
+        (item, i) => `2020-01-${(i + 1).toString().padStart(2, '0')}`,
+      ),
     },
     // （直角坐标系 Y 轴）
     yAxis: {
       name: '成单率(%)',
       type: 'value',
+      // 默认无数据时展示data，去掉type
+      // data: [0, 2, 4, 6, 8, 10],
       nameTextStyle: {
         fontWeight: 'bold',
         align: 'right',
@@ -110,51 +102,21 @@ const Index = () => {
       // 坐标轴名称与轴线之间的距离。
       nameGap: 15,
       // 坐标轴轴线相关设置
-      axisLine: {
-        show: false,
-      },
+      // axisLine: {
+      //   show: false,
+      // },
       // 坐标轴刻度相关设置
-      axisTick: {
-        show: false,
-      },
+      // axisTick: {
+      //   show: false,
+      // },
     },
     series: [
       {
         name: 'top20%成单率',
         type: 'line',
         // stack: '总量',
-        data: [
-          120,
-          1320,
-          101,
-          1340,
-          990,
-          230,
-          210,
-          120,
-          132,
-          101,
-          134,
-          90,
-          230,
-          2100,
-          120,
-          132,
-          101,
-          134,
-          90,
-          230,
-          210,
-          120,
-          132,
-          1010,
-          134,
-          90,
-          230,
-          210,
-          120,
-          132,
-        ],
+        // data: [],
+        data: Array.from({ length: 30 }, (item, i) => random(150, 300)),
         color: ['#ff9000'],
       },
       {
@@ -162,39 +124,7 @@ const Index = () => {
         type: 'line',
         // 数据堆叠，同个类目轴上系列配置相同的stack值后，后一个系列的值会在前一个系列的值上相加
         // stack: '总量',
-        data: [
-          820,
-          932,
-          901,
-          934,
-          1290,
-          1330,
-          1320,
-          820,
-          932,
-          901,
-          934,
-          1290,
-          1330,
-          1320,
-          820,
-          932,
-          901,
-          934,
-          1290,
-          1330,
-          1320,
-          820,
-          932,
-          901,
-          934,
-          1290,
-          1330,
-          1320,
-          820,
-          932,
-          901,
-        ],
+        data: Array.from({ length: 30 }, (item, i) => random(50, 160)),
         color: ['#1890ff'],
       },
     ],
