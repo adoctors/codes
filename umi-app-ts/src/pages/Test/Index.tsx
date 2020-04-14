@@ -37,7 +37,7 @@ const Index = (props: any): JSX.Element => {
       <div className={styles.headers}>
         <Dropdown overlay={munu}>
           <span style={{ color: '#2fe1a8' }}>
-            <span style={{ display: 'inline-block', width: 140 }}>{currentName}</span>
+            <span style={{ display: 'inline-block', width: 150 }}>{currentName}</span>
             <Icon type="down" />
           </span>
         </Dropdown>

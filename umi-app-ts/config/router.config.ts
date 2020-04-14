@@ -91,6 +91,21 @@ const router: IRoute[] = [
             name: 'introjs-react',
             component: './Test/components/Introjsreact',
           },
+          {
+            path: '/test/react-custom-scrollbars',
+            name: 'react-custom-scrollbars',
+            component: './Test/components/CustomScrollbars',
+          },
+          {
+            path: '/test/react-free-scrollbar',
+            name: 'react-free-scrollbar',
+            component: './Test/components/FreeScrollbar',
+          },
+          {
+            path: '/test/react-scrollbar',
+            name: 'react-scrollbar',
+            component: './Test/components/ReactScrollbar',
+          },
         ],
       },
       {
