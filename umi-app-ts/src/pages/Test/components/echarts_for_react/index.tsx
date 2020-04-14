@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect, Fragment, useRef } from 'react';
 import { IObject } from '@/models/common.d';
 
 import ReactEcharts from 'echarts-for-react';
@@ -6,6 +6,19 @@ import ReactEcharts from 'echarts-for-react';
 import styles from './style.less';
 
 const Index = () => {
+  const ReactEchartsRef: any = useRef(null);
+  const widthChange = () => {
+    if (ReactEchartsRef && ReactEchartsRef.current) {
+      const echarts_instance = ReactEchartsRef.current.getEchartsInstance();
+      if (echarts_instance) echarts_instance.resize();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', widthChange);
+    return () => window.removeEventListener('resize', widthChange);
+  }, []);
+
   const option = {
     title: {
       text: '折线图堆叠',
@@ -33,7 +46,6 @@ const Index = () => {
     },
     // （直角坐标系 X 轴）
     xAxis: {
-      
       type: 'category',
       boundaryGap: false,
       data: [
@@ -48,7 +60,7 @@ const Index = () => {
     },
     // （直角坐标系 Y 轴）
     yAxis: {
-      name:'成单率(%)',
+      name: '成单率(%)',
       type: 'value',
     },
     series: [
@@ -78,7 +90,9 @@ const Index = () => {
       <p>echarts_for_react</p>
 
       <div>
+        {/* 根据容器的宽度来 */}
         <ReactEcharts
+          ref={ReactEchartsRef}
           option={option}
           notMerge={true}
           lazyUpdate={true}
