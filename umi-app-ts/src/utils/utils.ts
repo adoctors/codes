@@ -1,4 +1,4 @@
-import router from 'umi/router';
+import { history } from 'umi';
 import { parse } from 'qs';
 
 export const getPageQuery = (key = '') => {
@@ -13,7 +13,7 @@ export const updateRoute = (params: object, ifReplace = true, method?: string): 
     query = { ...queryParams, ...params };
   }
   
-  (router as any)[method || 'replace']({
+  (history as any)[method || 'replace']({
     pathname: location ? location.pathname : '',
     query,
   });

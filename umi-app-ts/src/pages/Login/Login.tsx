@@ -3,7 +3,7 @@ import { connect } from 'dva';
 import { Form, Icon, Input, Button } from 'antd';
 import Particles from 'react-particles-js';
 import { ConnectProps } from '@/models/connect';
-import router from 'umi/router';
+import { history } from 'umi';
 import styles from './Login.less';
 
 import logo from '../../assets/logo-b.png';
@@ -32,7 +32,7 @@ const Login = (props: IProps): React.ReactElement => {
               bodyData: values,
             },
             successCallback: (success: any) => {
-              if (success) router.replace('/tags');
+              if (success) history.replace('/tags');
             },
           });
         }

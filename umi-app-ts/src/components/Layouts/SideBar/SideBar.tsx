@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'dva';
-import Link from 'umi/link';
+import { Link } from 'umi';
 import { Menu, Icon } from 'antd';
 import { ConnectState, ConnectProps } from '@/models/connect';
 

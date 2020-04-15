@@ -1,5 +1,4 @@
 import { AnyAction, Dispatch } from 'redux';
-import { RouterTypes } from 'umi';
 import { GlobalModelState } from './global';
 
 export { GlobalModelState };
@@ -22,6 +21,6 @@ export interface ConnectState {
 /**
  * @type T: Params matched in dynamic routing
  */
-export interface ConnectProps<T = {}> extends Partial<RouterTypes<Route, T>> {
+export interface ConnectProps<T = {}> extends Partial<any> {
   dispatch?: Dispatch<AnyAction>;
 }

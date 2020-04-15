@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'dva';
-import Link from 'umi/link';
+import { Link } from 'umi';
 import { Avatar, Menu, Dropdown, Icon } from 'antd';
 import styles from './Header.less';
 import logo from '@/assets/logo-b.png';
 
-const Header = props => {
+const Header = (props) => {
   const userName = 'test';
 
   const menu = (
@@ -13,14 +13,13 @@ const Header = props => {
       <Menu.Item>
         <div className={styles.dropdownMunuItem}>
           <Icon type="logout" />
-          <Link to="/login" style={{color:'#666', marginLeft: 8}}>退出登陆</Link>
+          <Link to="/login" style={{ color: '#666', marginLeft: 8 }}>
+            退出登陆
+          </Link>
         </div>
       </Menu.Item>
     </Menu>
   );
-
-
-
 
   return (
     <div className={styles.LayoutHeaderWrap}>
@@ -28,7 +27,10 @@ const Header = props => {
       <div className={styles.LayoutHeaderRight}>
         <Dropdown overlay={menu} placement="bottomLeft">
           <div className={styles.LayoutHeaderUserWrap}>
-            <Avatar style={{ backgroundColor: '#009688', verticalAlign: 'middle', marginRight: 10 }} size="small">
+            <Avatar
+              style={{ backgroundColor: '#009688', verticalAlign: 'middle', marginRight: 10 }}
+              size="small"
+            >
               {userName.charAt(0)}
             </Avatar>
             {userName}

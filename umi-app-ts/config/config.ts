@@ -1,14 +1,15 @@
-import { IConfig } from 'umi-types';
 import routes from './router.config';
-import plugins from './plugins.config';
 import webpackPlugin from './chainWebpack.config';
 import path from 'path';
 
 // ref: https://umijs.org/config/
-const config: IConfig = {
-  plugins,
+const config = {
+  title: 'adoctors',
+  locale: {
+    default: 'zh-CN',
+    baseNavigator: true,
+  },
   routes,
-  treeShaking: true,
   targets: {
     ie: 11,
   },
@@ -22,7 +23,7 @@ const config: IConfig = {
   // publicPath: '/dist/',
   /** 非根目录打包*/
 
-  lessLoaderOptions: {
+  lessLoader: {
     javascriptEnabled: true,
     paths: [path.resolve(__dirname, '../src/')],
   },

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Menu, Dropdown, Icon } from 'antd';
-import Link from 'umi/link';
+import { Link } from 'umi';
 import routerConfig from '../../../config/router.config';
 import styles from './Index.less';
 
