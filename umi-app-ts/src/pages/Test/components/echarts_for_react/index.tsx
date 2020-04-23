@@ -85,7 +85,7 @@ const Index = () => {
       data: Array.from(
         { length: 30 },
         (item, i) => `2020-01-${(i + 1).toString().padStart(2, '0')}`,
-      ),
+      ).filter((item, i) => i % 2 === 1),
     },
     // （直角坐标系 Y 轴）
     yAxis: {
@@ -126,6 +126,45 @@ const Index = () => {
         // stack: '总量',
         data: Array.from({ length: 30 }, (item, i) => random(50, 160)),
         color: ['#1890ff'],
+      },
+      // 平行辅助线
+      {
+        // name: 'abc',
+        type: 'line',
+        markLine: {
+          // 去掉箭头
+          symbol: 'none',
+          label: {
+            // 不显示label
+            show: false,
+          },
+          data: [
+            {
+              lineStyle: {
+                normal: {
+                  color: 'green',
+                },
+              },
+              xAxis: '2020-01-04',
+            },
+            {
+              lineStyle: {
+                normal: {
+                  color: 'red',
+                },
+              },
+              xAxis: '2020-01-08',
+            },
+            {
+              lineStyle: {
+                normal: {
+                  color: 'black',
+                },
+              },
+              xAxis: '2020-01-06',
+            },
+          ],
+        },
       },
     ],
   };
