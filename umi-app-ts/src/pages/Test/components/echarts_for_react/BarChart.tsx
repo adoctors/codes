@@ -6,6 +6,15 @@ import ReactEcharts from 'echarts-for-react';
 
 export default () => {
   const option = {
+    tooltip: {
+      trigger: 'item',
+      padding: [5, 10],
+      // formatter: (params = []) => {
+      //   const x: IObject = params[0];
+      //   const y: IObject = params[1];
+      //   return `${x.name} <br />${x.marker} ${x.seriesName}: ${x.data}% <br />${y.marker} ${y.seriesName}: ${y.data}`;
+      // },
+    },
     xAxis: {
       type: 'category',
       data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -51,8 +60,8 @@ export default () => {
                   color: '#FF7875',
                   opacity: 0.15,
                   borderColor: 'red',
-                  borderWidth: 2,
-                  borderType: 'dashed',
+                  // borderWidth: 2,
+                  // borderType: 'dashed',
                 },
               },
               {
@@ -76,20 +85,27 @@ export default () => {
           data: [
             {
               lineStyle: {
-                normal: {
-                  color: 'green',
-                },
+                width: 2,
+                color: 'green',
               },
               yAxis: 80,
             },
-            // {
-            //   lineStyle: {
-            //     normal: {
-            //       color: 'green',
-            //     },
-            //   },
-            //   // 非data内的也可以设置
-            //   yAxis: 50,
+            {
+              lineStyle: {
+                color: 'red',
+                type: 'solid',
+              },
+              // 非data内的也可以设置
+              yAxis: 200,
+              // hover效果取消
+            },
+            {
+              lineStyle: {
+                color: 'red',
+                type: 'dotted',
+              },
+              yAxis: 130,
+            },
             // },
           ],
         },

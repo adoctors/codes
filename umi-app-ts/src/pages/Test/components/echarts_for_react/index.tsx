@@ -8,6 +8,7 @@ import styles from './style.less';
 export default () => {
   return (
     <div className={styles.wrapper}>
+      <div className={styles.border} />
       <p>echarts_for_react</p>
       <div>
         <p>柱状图效果</p>

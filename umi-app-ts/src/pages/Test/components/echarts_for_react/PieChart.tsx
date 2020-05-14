@@ -38,8 +38,8 @@ export default () => {
             // name: 'unused',
             itemStyle: {
               color: '#f0f2f4',
-              // borderColor: 'white',
-              // borderWidth: 5,
+              borderColor: 'white',
+              borderWidth: 5,
             },
           },
         ],
