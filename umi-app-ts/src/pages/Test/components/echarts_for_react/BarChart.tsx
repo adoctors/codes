@@ -5,6 +5,10 @@ import { IObject } from '@/models/common.d';
 import ReactEcharts from 'echarts-for-react';
 
 export default () => {
+  const data = [120, 200, 150, 80, 70, 110, 130];
+
+  const data2 = data.filter((item) => item > 130).map((op) => op - 130);
+
   const option = {
     tooltip: {
       trigger: 'item',
@@ -37,16 +41,26 @@ export default () => {
     color: ['pink'],
     series: [
       {
-        data: [120, 200, 150, 80, 70, 110, 130],
+        data,
         type: 'bar',
+        stack: 2, // 这个属性很重要，他决定这些柱状图是否是拼接在一起的，拼接在一起的stack值必须相等
         // 设置bar的颜色，优先级高于父级的color
         color: ['#D5CECE'],
         barWidth: 16,
         itemStyle: {
-          barBorderRadius: 12,
+          // barBorderRadius: 12,
           // opacity: 0.8,
           // 柱条的颜色
-          color: '#D5CECE',
+          // color: '#D5CECE',
+          color: function (params) {
+            var index_color = params.value;
+
+            if (index_color > 130) {
+              return '#fe4365';
+            } else {
+              return '#D5CECE';
+            }
+          },
         },
         // showBackground: true,
         // 区域背景色
@@ -109,6 +123,17 @@ export default () => {
             // },
           ],
         },
+      },
+      {
+        type: 'bar',
+        name: '类目3',
+        stack: 2,
+        itemStyle: {
+          // barBorderRadius: [12,12,0,0],
+          color: 'lightblue',
+        },
+        barWidth: '20',
+        data: data2,
       },
     ],
     // 区域缩放控制器
