@@ -5,6 +5,9 @@ import { Button } from 'antd';
 
 export default () => {
   const ReactEchartsRef: any = useRef(null);
+  const areaMax = 200;
+  const areaMin = 130;
+  const averageLine = 80;
   const data = [120, 200, 150, 80, 70, 110, 130];
 
   const data2 = data.filter((item) => item > 130).map((op) => op - 130);
@@ -13,13 +16,20 @@ export default () => {
     tooltip: {
       trigger: 'item',
       padding: [5, 10],
-      // formatter: (params = []) => {
-      //   const x: IObject = params[0];
-      //   const y: IObject = params[1];
-      //   return `${x.name} <br />${x.marker} ${x.seriesName}: ${x.data}% <br />${y.marker} ${y.seriesName}: ${y.data}`;
-      // },
+      formatter: (params: IObject) => {
+        const { seriesName, value, componentType } = params;
+        console.log(params);
+        console.log(seriesName, value);
+        if (componentType === 'markLine') {
+          if (value === averageLine) return `公司平均${value}%`;
+          return '123';
+        }
+
+        if (seriesName && value) return `${seriesName}: ${value}`;
+      },
     },
     xAxis: {
+      name: '坐席',
       type: 'category',
       data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
       // 刻度线设置
@@ -28,6 +38,7 @@ export default () => {
       },
     },
     yAxis: {
+      name: '处理不当比例(%)',
       type: 'value',
       // 分隔线设置，类似于刻度线的反向的延长
       splitLine: {
@@ -41,6 +52,7 @@ export default () => {
     color: ['pink'],
     series: [
       {
+        name: '处理不当比例(%)',
         data,
         type: 'bar',
         stack: 2, // 这个属性很重要，他决定这些柱状图是否是拼接在一起的，拼接在一起的stack值必须相等
@@ -68,7 +80,7 @@ export default () => {
           data: [
             [
               {
-                yAxis: 130,
+                yAxis: areaMin,
                 // 设置背景的颜色
                 itemStyle: {
                   color: '#FF7875',
@@ -79,7 +91,7 @@ export default () => {
                 },
               },
               {
-                yAxis: 200,
+                yAxis: areaMax,
               },
             ],
           ],
@@ -92,28 +104,40 @@ export default () => {
         markLine: {
           // 去掉箭头
           symbol: 'none',
-          label: {
-            // 不显示label
-            show: false,
-          },
+          // label: {
+          //   // 不显示label
+          //   show: false,
+          // },
           data: [
             {
+              label: {
+                formatter: `公司平均${averageLine}%`,
+                position: 'middle',
+              },
               lineStyle: {
                 width: 2,
                 color: 'green',
               },
-              yAxis: 80,
+              yAxis: averageLine,
             },
             {
+              label: {
+                formatter: `警示区`,
+                position: 'insideEndTop',
+              },
               lineStyle: {
                 color: 'red',
                 type: 'solid',
               },
               // 非data内的也可以设置
-              yAxis: 200,
+              yAxis: areaMax,
               // hover效果取消
             },
             {
+              label: {
+                // 不限时
+                show: false,
+              },
               lineStyle: {
                 color: 'red',
                 type: 'dotted',
@@ -195,3 +219,5 @@ export default () => {
     </div>
   );
 };
+
+// markline -demo:https://echarts.apache.org/examples/zh/editor.html?c=line-markline
