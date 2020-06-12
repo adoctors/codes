@@ -1,10 +1,10 @@
 // 柱状图 - 可拖拽区间-定制样式
 import React, { useEffect, useRef } from 'react';
-import moment from 'moment';
-import { IObject } from '@/models/common.d';
 import ReactEcharts from 'echarts-for-react';
+import { Button } from 'antd';
 
 export default () => {
+  const ReactEchartsRef: any = useRef(null);
   const data = [120, 200, 150, 80, 70, 110, 130];
 
   const data2 = data.filter((item) => item > 130).map((op) => op - 130);
@@ -148,8 +148,50 @@ export default () => {
       fillerColor: 'rgba(144,197,237,0.2)', // 填充颜色
       handleColor: 'rgba(70,130,180,0.8)', // 手柄颜色
     },
+    toolbox: {
+      feature: {
+        // dataZoom: {
+        //   yAxisIndex: false,
+        // },
+        saveAsImage: {
+          type: 'png', //png  jpeg
+          name: '柱状图保存文件名',
+          title: '我是放在下载icon上的文案',
+          // 分辨率，默认跟容器相同，如果更高的分辨率，大于1
+          pixelRatio: 2,
+        },
+      },
+    },
+  };
+
+  const chartDownload = () => {
+    if (ReactEchartsRef && ReactEchartsRef.current) {
+      const echarts_instance = ReactEchartsRef.current.getEchartsInstance();
+      if (echarts_instance) {
+        // params.scheduler.ecInstance 获取图表实例，并配置生成图片的属性
+        const dataSource = echarts_instance.getDataURL({
+          type: 'png',
+          pixelRatio: 2,
+          backgroundColor: '#fff',
+        });
+        // 本地将canvas 图片导出成图片，并下载
+        const MIME_TYPE = 'image/png';
+        const dlLink = document.createElement('a');
+        dlLink.download = 'Near Miss.png';
+        dlLink.href = dataSource;
+        dlLink.dataset.downloadurl = [MIME_TYPE, dlLink.download, dlLink.href].join(':');
+        document.body.appendChild(dlLink);
+        dlLink.click();
+        document.body.removeChild(dlLink);
+      }
+    }
   };
 
   // 根据容器的宽度来
-  return <ReactEcharts option={option} />;
+  return (
+    <div>
+      <Button onClick={chartDownload}>外部点击触发下载</Button>
+      <ReactEcharts ref={ReactEchartsRef} option={option} />
+    </div>
+  );
 };
