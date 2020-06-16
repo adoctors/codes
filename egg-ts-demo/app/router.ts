@@ -4,6 +4,7 @@ export default (app: Application) => {
   const { controller, router } = app;
 
   router.get("/", controller.home.index);
+  router.resources('test-index', '/api/test', controller.test);
   router.get("/rule/:id", controller.home.detail);
   router.get("/v5/rules", controller.rule2.index);
   router.get("/v5/configs", controller.configs.index);

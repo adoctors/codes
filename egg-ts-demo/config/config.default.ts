@@ -26,6 +26,15 @@ export default (appInfo: EggAppInfo) => {
       }
     }
   };
+
+  config.sequelize = {
+    dialect: 'postgres',
+    database: 'dealtape-bff',
+    host: 'localhost',
+    port: 5432,
+    username: 'postgres',
+    password: 'gozfuhsprmzkbwunrnlp'
+  };
   
   config.logger = {
     // 日志输出配置，该配置会输出两份

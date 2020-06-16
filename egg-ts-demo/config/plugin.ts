@@ -13,6 +13,10 @@ const plugin: EggPlugin = {
   mongoose: {
     enable: true,
     package: 'egg-mongoose',
+  },
+  sequelize: {
+    enable: true,
+    package: 'egg-sequelize'
   }
 };
 
