@@ -29,11 +29,13 @@ export default (appInfo: EggAppInfo) => {
 
   config.sequelize = {
     dialect: 'postgres',
-    database: 'dealtape-bff',
+    database: 'test',
     host: 'localhost',
     port: 5432,
-    username: 'postgres',
-    password: 'gozfuhsprmzkbwunrnlp'
+    username: 'root',
+    password: 'root',
+    baseDir: 'database/model',
+    delegate: 'database/model'
   };
   
   config.logger = {
