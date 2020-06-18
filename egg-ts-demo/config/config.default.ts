@@ -29,15 +29,23 @@ export default (appInfo: EggAppInfo) => {
 
   config.sequelize = {
     dialect: 'postgres',
-    database: 'test',
-    host: 'localhost',
+    database: 'bff',
+    host: '127.0.0.1',
     port: 5432,
-    username: 'root',
-    password: 'root',
+    username: 'postgres',
+    password: 'psd',
     baseDir: 'database/model',
     delegate: 'database/model'
   };
-  
+
+  config.proxy = {
+    host: 'https://dealtape-nightly.rcrai.com'
+  }
+
+  config.jwt = {
+    secret: 'adoctors',
+  };
+
   config.logger = {
     // 日志输出配置，该配置会输出两份
     // egg-ts-demo-web.log  区块清晰

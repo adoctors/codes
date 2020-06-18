@@ -17,6 +17,14 @@ const plugin: EggPlugin = {
   sequelize: {
     enable: true,
     package: 'egg-sequelize'
+  },
+  jwt: {
+    enable: true,
+    package: 'egg-jwt',
+  },
+  proxy: {
+    enable: true,
+    package: 'koa-proxy'
   }
 };
 
