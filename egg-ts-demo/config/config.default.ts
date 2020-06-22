@@ -29,13 +29,16 @@ export default (appInfo: EggAppInfo) => {
 
   config.sequelize = {
     dialect: 'postgres',
-    database: 'bff',
+    database: 'test',
     host: '127.0.0.1',
     port: 5432,
-    username: 'postgres',
-    password: 'psd',
-    baseDir: 'database/model',
-    delegate: 'database/model'
+    username: 'root',
+    password: 'root',
+    baseDir: 'pg_model',  // load models from `app/pg_model/*.js`
+    delegate: 'pgModel',  // load all models to app.model and ctx.pgModel
+    define: {
+      timestamps: false
+    }
   };
 
   config.proxy = {
