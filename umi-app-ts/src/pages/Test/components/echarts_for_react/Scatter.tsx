@@ -29,19 +29,98 @@ const median = 11.0;
 
 export default () => {
   const ReactEchartsRef: any = useRef(null);
+
+  // 中心点作为markArea.data[x][1]的值，其余每个象限值为象限斜对角的点
+  const midpoint = {
+    yAxis: 0,
+    xAxis: 11,
+  };
+
   const option = {
     title: {
-      text: '品牌健康度分析',
+      text: '象限散点图',
+    },
+    toolbox: {
+      // icon大小
+      itemSize: 16,
+      // icon间距
+      itemGap: 80,
+      // 工具栏据容器右侧的距离
+      right: 80,
+      // hover时显示title
+      showTitle: false,
+      feature: {
+        // 区域缩放与回退
+        dataZoom: {
+          // title: {
+          //   zoom: '区域缩放',
+          //   back: '缩放还原',
+          // },
+          // iconStyle: {
+          //   // color: 'red',
+          // },
+          // emphasis: {
+          //   iconStyle: {
+          //     textPosition: 'right',
+          //     // textAlign: 'left',
+          //     // textPadding: 20,
+          //   },
+          // },
+        },
+        // brush: {
+        //   type: ['rect', 'polygon', 'clear'],
+        // },
+      },
     },
     xAxis: {
       // 取数据在该轴上的最小值作为最小刻度
       min: 'dataMin',
       // 不显示坐标轴,测试的时候可以自己打开
-      //   show: false,
+      // show: false,
+      axisLine: {
+        lineStyle: {
+          color: '#ebebeb',
+        },
+      },
+      axisLabel: {
+        show: false,
+      },
+      axisTick: {
+        show: false,
+      },
+
+      splitLine: {
+        lineStyle: {
+          color: '#ebebeb',
+          type: 'dashed',
+        },
+      },
     },
     yAxis: {
       // 不显示坐标轴,测试的时候可以自己打开
-      //   show: false,
+      // show: false,
+      // 坐标轴线
+      axisLine: {
+        show: false,
+        lineStyle: {
+          color: '#ebebeb',
+        },
+      },
+      // 坐标轴label
+      axisLabel: {
+        show: false,
+      },
+      // 刻度值
+      axisTick: {
+        show: false,
+      },
+      // 分割线
+      splitLine: {
+        lineStyle: {
+          color: '#ebebeb',
+          type: 'dashed',
+        },
+      },
     },
     // 原生图形元素组件，目前问题无法关联到具体的坐标值
     graphic: {
@@ -71,6 +150,26 @@ export default () => {
         //     textAligin: 'middle',
         //   },
         // },
+        {
+          type: 'text',
+          right: 30,
+          top: 11,
+          style: {
+            text: '缩放还原',
+            fill: '#999',
+            textAligin: 'right',
+          },
+        },
+        {
+          type: 'text',
+          right: 130,
+          top: 11,
+          style: {
+            text: '区域缩放',
+            fill: '#999',
+            textAligin: 'right',
+          },
+        },
       ],
     },
 
@@ -84,6 +183,9 @@ export default () => {
         symbolSize: 50,
         // 将散点层级调高至不被markLine遮挡
         z: 9,
+        type: 'scatter',
+        // hover是否提示动画效果
+        hoverAnimation: false,
         data: [
           {
             name: '三星',
@@ -122,44 +224,42 @@ export default () => {
           //     },
           //   },
         ],
-        type: 'scatter',
         // 模拟坐标轴
         markLine: {
+          silent: true,
           lineStyle: {
-            normal: {
-              color: '#555555',
-              type: 'solid',
-            },
+            color: '#ccc',
+            type: 'solid',
           },
           data: [
             {
               xAxis: median,
               label: {
-                normal: {
-                  show: true,
-                  formatter: '品牌净流入量',
-                },
+                // 强制设置一个label
+                formatter: '成交多',
+                color: '#4d4d4d',
               },
             },
             {
               yAxis: 0,
               label: {
-                normal: {
-                  show: true,
-                  formatter: '品牌持机量',
-                },
+                formatter: '执行分高',
+                color: '#4d4d4d',
               },
             },
           ],
         },
         markArea: {
+          // 不响应鼠标事件
+          // 响应时，鼠标移动到该区域，label会移动到区域外部
+          silent: true,
           data: [
             // 设置第四象限
             [
               {
                 // name: '第四象限',
-                yAxis: 0,
-                xAxis: 8,
+                yAxis: -9,
+                xAxis: 0,
                 // 设置背景的颜色
                 itemStyle: {
                   color: 'rgba(255,120,117,0.15)',
@@ -168,21 +268,24 @@ export default () => {
                 label: {
                   show: true,
                   formatter: ['{a|重点关注区}', '{b|成交少，执行分低}'].join('\n'),
-                  position: ['80%',"10%"],
+                  // 相对于区域左上角的位置
+                  position: ['96%', '10%'],
+                  align: 'right',
                   rich: {
-                    b: {
-                      color: '#ccc',
-                      lineHeight: 18,
-                    },
                     a: {
                       color: 'red',
                       fontSize: 18,
+                      lineHeight: 30,
+                    },
+                    b: {
+                      color: '#999',
+                      lineHeight: 18,
                     },
                   },
                 },
               },
               {
-                yAxis: -9,
+                yAxis: 0,
                 xAxis: 11,
               },
             ],
@@ -193,8 +296,85 @@ export default () => {
                 xAxis: 15,
                 // 设置背景的颜色
                 itemStyle: {
-                  color: '#FF7875',
-                  opacity: 0.15,
+                  color: 'rgba(56, 158, 13, 0.2)',
+                  // opacity: 0.15,
+                },
+                label: {
+                  show: true,
+                  formatter: ['{a|优秀坐席区}', '{b|成交多，执行分高}'].join('\n'),
+                  position: ['3%', '10%'],
+                  rich: {
+                    a: {
+                      color: 'rgba(56, 158, 13, 1)',
+                      fontSize: 18,
+                      lineHeight: 30,
+                    },
+                    b: {
+                      color: '#999',
+                      lineHeight: 18,
+                    },
+                  },
+                },
+              },
+              {
+                yAxis: 0,
+                xAxis: 11,
+              },
+            ],
+            // 设置第一象限
+            [
+              {
+                yAxis: 9,
+                xAxis: 8,
+                itemStyle: {
+                  color: 'rgba(255, 255,255, 0)',
+                },
+                label: {
+                  show: true,
+                  formatter: ['{a|负向监督挖掘区}', '{b|成交少，执行分高}'].join('\n'),
+                  position: ['96%', '10%'],
+                  align: 'right',
+                  rich: {
+                    a: {
+                      color: '#ddd',
+                      fontSize: 18,
+                      lineHeight: 30,
+                    },
+                    b: {
+                      color: '#999',
+                      lineHeight: 18,
+                    },
+                  },
+                },
+              },
+              {
+                yAxis: 0,
+                xAxis: 11,
+              },
+            ],
+            // 设置第三象限
+            [
+              {
+                yAxis: -9,
+                xAxis: 15,
+                itemStyle: {
+                  color: 'rgba(255, 255,255, 0)',
+                },
+                label: {
+                  show: true,
+                  formatter: ['{a|正向监督挖掘区}', '{b|成交多，执行分低}'].join('\n'),
+                  position: ['3%', '10%'],
+                  rich: {
+                    a: {
+                      color: '#ddd',
+                      fontSize: 18,
+                      lineHeight: 30,
+                    },
+                    b: {
+                      color: '#999',
+                      lineHeight: 18,
+                    },
+                  },
                 },
               },
               {
